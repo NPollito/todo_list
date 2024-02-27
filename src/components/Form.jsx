@@ -1,6 +1,6 @@
 import { useState} from "react";
 
-function Form({addTasks, editMode, setEditMode, nameTask, setNameTask, setUpdatedTask}) {
+function Form({addTasks, editMode, setEditMode, setShowTable, nameTask, setNameTask, setUpdatedTask}) {
 
     const [task, setTask] = useState({
         name: "",
@@ -37,6 +37,7 @@ function Form({addTasks, editMode, setEditMode, nameTask, setNameTask, setUpdate
         task.complete = false
 
         addTasks(task)
+        setShowTable(true)
 
         // reiniciar formulario
         setTask({name: ""})
@@ -60,26 +61,32 @@ function Form({addTasks, editMode, setEditMode, nameTask, setNameTask, setUpdate
     }
     
     return(
-        <>
-            <h3>{editMode ? 'Editar tarea': 'Agregar tarea' }</h3>
+        <section className="m-auto form-size">
+            <h3 className="fs-3 mb-3 color-sub-title">{editMode ? 'Editar tarea': 'Crear tareas' }</h3>
 
-            <form onSubmit={editMode ? saveTask : validateMessage}>
-                {
-                    error && <p style={{color: "red"}}>Escribe una tarea</p>
-                }
+            <form 
+                onSubmit={editMode ? saveTask : validateMessage} 
+                className="d-flex gap-2 "
+            >
+                
                 <input 
-                    type="text" 
-                    placeholder="Ejem. hacer ejercicios"
+                    className="form-control" 
+                    type="text"
+                    placeholder="Ejem. leer"
                     name="name"
                     value={editMode ? nameTask : name}
                     onChange={updateTask}
                 />
                 <input 
+                    className="btn btn-primary"
                     type="submit" 
                     value={editMode ? 'Guardar': 'Agregar'}
                 />
             </form>
-        </>
+            {
+                error && <p className="text-danger mt-2 fs-5">Texto vacío</p>
+            }
+        </section>
     )
 }
 

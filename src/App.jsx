@@ -9,6 +9,7 @@ function App() {
   const [id, setId] = useState('')
   const [nameTask, setNameTask] = useState('')
   const [updatedTask, setUpdatedTask] = useState('')
+  const [showTable, setShowTable] = useState(false)
 
   // modificar una tarea
   useEffect(()=> {
@@ -53,26 +54,32 @@ function App() {
   }
 
   return (
-    <main>
-      <section>
-        <h1>Todo list</h1>
-        <Form
-          addTasks={addTasks}
-          editMode={editMode} 
-          setEditMode={setEditMode}
-          nameTask={nameTask}
-          setNameTask={setNameTask}
-          setUpdatedTask={setUpdatedTask}
-        />
-        <div>
-          <Tasks 
-            tasks={tasks} 
-            deleteTask={deleteTask} 
-            toogleTask={toogleTask} 
-            editTask={editTask}
-          />
-        </div> 
-      </section>
+    <main className="container">
+      <h1 className="py-5 text-center fs-1 fw-bold text-light">Lista de Tareas</h1>
+      <div className="row">
+        <section className="col-12 px-2 mb-5">
+          <Form
+            addTasks={addTasks}
+            editMode={editMode} 
+            setShowTable={setShowTable}
+            setEditMode={setEditMode}
+            nameTask={nameTask}
+            setNameTask={setNameTask}
+            setUpdatedTask={setUpdatedTask}
+            />
+        </section>
+        <section className="col-12 px-2">
+          {
+            showTable &&
+              <Tasks 
+                tasks={tasks} 
+                deleteTask={deleteTask} 
+                toogleTask={toogleTask} 
+                editTask={editTask}
+              />
+          }
+        </section>
+      </div>        
     </main>
   )
 }

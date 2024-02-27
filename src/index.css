@@ -1,1 +1,26 @@
+h1 {
+    font-family: "Sora", sans-serif;
+}
 
+/* style bootstrap */
+
+/* my style */
+#root {
+    min-height: 100vh;
+    background: linear-gradient(200deg, #574088,#5137a8,#3c2eca);
+    min-width: 320px;
+    overflow-y: scroll;
+}
+
+.color-sub-title {
+    color: #b19bff;
+}
+
+.form-size {
+    max-width: 600px;
+}
+
+.table-size {
+    max-width: 690px;
+    min-width: 320px;
+}
