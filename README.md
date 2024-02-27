@@ -1,1 +1,1 @@
-# React + Vite & bootstrap
+# React + Vite + bootstrap
